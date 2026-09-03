@@ -1,0 +1,325 @@
+<title>Outreach Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#faf6f3; --panel:#ffffff; --panel2:#f4eee9; --line:#e9ded6; --line2:#dccec3;
+  --text:#171a24; --muted:#5f6373; --faint:#8b8f9e;
+  --coral:#e2503f; --coral-soft:rgba(226,80,63,.10);
+  --teal:#127f72; --teal-soft:rgba(18,127,114,.12);
+  --gold:#b7791f;
+  --shadow:0 24px 60px -30px rgba(30,20,15,.45);
+  --f-disp:'Bricolage Grotesque',sans-serif;
+  --f-body:'IBM Plex Sans',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#0a0e1a; --panel:#121829; --panel2:#0f1524; --line:#232c44; --line2:#33405f;
+    --text:#eef2fb; --muted:#94a1c0; --faint:#5f6d8c;
+    --coral:#ff6a5a; --coral-soft:rgba(255,106,90,.14);
+    --teal:#35d0ba; --teal-soft:rgba(53,208,186,.14);
+    --gold:#f2b45c;
+    --shadow:0 30px 70px -30px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#0a0e1a; --panel:#121829; --panel2:#0f1524; --line:#232c44; --line2:#33405f;
+  --text:#eef2fb; --muted:#94a1c0; --faint:#5f6d8c;
+  --coral:#ff6a5a; --coral-soft:rgba(255,106,90,.14);
+  --teal:#35d0ba; --teal-soft:rgba(53,208,186,.14);
+  --gold:#f2b45c;
+  --shadow:0 30px 70px -30px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);background:var(--ink);color:var(--text);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,92vw);margin:0 auto}
+.mono{font-family:var(--f-mono)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+  background:color-mix(in srgb,var(--ink) 82%,transparent);
+  border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:12px;padding:15px 0}
+.mark{display:flex;align-items:center;gap:10px;font-family:var(--f-disp);font-weight:800;
+  letter-spacing:-.02em;font-size:17px}
+.mark .glyph{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  background:var(--coral);color:#fff;font-size:15px;box-shadow:0 6px 16px -6px var(--coral)}
+.navlinks{margin-left:auto;display:flex;gap:26px;align-items:center;font-size:14px;
+  color:var(--muted);font-weight:500}
+.navlinks a:hover{color:var(--text)}
+.navlinks .cta{color:var(--text);border:1px solid var(--line2);padding:8px 15px;
+  border-radius:9px}
+.navlinks .cta:hover{border-color:var(--coral);color:var(--coral)}
+@media(max-width:640px){.navlinks a:not(.cta){display:none}}
+
+/* hero */
+.hero{padding:76px 0 30px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:48px 0 10px}}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--coral);display:inline-flex;align-items:center;gap:9px;
+  margin-bottom:20px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--coral)}
+h1{font-family:var(--f-disp);font-weight:800;letter-spacing:-.035em;line-height:1.02;
+  font-size:clamp(38px,6vw,62px);text-wrap:balance}
+h1 .u{color:var(--coral)}
+.lede{font-size:clamp(16px,1.5vw,18.5px);color:var(--muted);margin-top:22px;max-width:34em}
+.btns{display:flex;gap:13px;margin-top:32px;flex-wrap:wrap}
+.btn{font-family:var(--f-body);font-weight:600;font-size:15px;padding:13px 22px;border-radius:11px;
+  cursor:pointer;border:1px solid transparent;transition:transform .1s,filter .15s,border-color .15s}
+.btn:active{transform:translateY(1px)}
+.btn.solid{background:var(--coral);color:#fff;box-shadow:0 12px 30px -12px var(--coral)}
+.btn.solid:hover{filter:brightness(1.06)}
+.btn.line{background:transparent;color:var(--text);border-color:var(--line2)}
+.btn.line:hover{border-color:var(--coral);color:var(--coral)}
+.trust{margin-top:26px;display:flex;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--faint)}
+.trust b{color:var(--text);font-weight:600}
+
+/* console card */
+.console{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--shadow);overflow:hidden}
+.console-bar{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid var(--line);
+  background:var(--panel2)}
+.dot{width:11px;height:11px;border-radius:50%}
+.dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+.console-bar .name{margin-left:8px;font-family:var(--f-mono);font-size:12.5px;color:var(--faint)}
+.console-body{padding:18px 18px 22px;font-family:var(--f-mono);font-size:13px;line-height:1.85;
+  min-height:328px}
+.cl{opacity:0;transform:translateY(4px);animation:rise .4s forwards}
+.cl .p{color:var(--coral)}
+.cl .ok{color:var(--teal)}
+.cl .d{color:var(--faint)}
+.cl .w{color:var(--gold)}
+@keyframes rise{to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.cl{opacity:1;transform:none;animation:none}}
+.caret{display:inline-block;width:8px;height:15px;background:var(--coral);
+  vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* section frame */
+section.band{padding:74px 0}
+.kicker{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal);font-weight:500}
+h2{font-family:var(--f-disp);font-weight:700;letter-spacing:-.03em;font-size:clamp(27px,3.4vw,38px);
+  margin-top:12px;text-wrap:balance}
+.sub{color:var(--muted);margin-top:12px;max-width:52ch;font-size:16px}
+
+/* pipeline */
+.pipe{margin-top:44px;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+@media(max-width:860px){.pipe{grid-template-columns:1fr;gap:14px}}
+.node{position:relative;padding:0 16px}
+.node:first-child{padding-left:0}.node:last-child{padding-right:0}
+.node .n{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+  font-family:var(--f-disp);font-weight:800;font-size:17px;background:var(--coral-soft);color:var(--coral);
+  border:1px solid color-mix(in srgb,var(--coral) 35%,transparent);position:relative;z-index:2}
+.node::after{content:"";position:absolute;top:21px;left:calc(50% + 24px);right:calc(-50% + 24px);
+  height:2px;background:linear-gradient(90deg,var(--line2),var(--line));z-index:1}
+.node:last-child::after{display:none}
+@media(max-width:860px){.node::after{display:none}}
+.node h4{font-family:var(--f-disp);font-weight:700;font-size:16.5px;margin-top:16px;letter-spacing:-.01em}
+.node p{color:var(--muted);font-size:13.5px;margin-top:6px}
+
+/* features */
+.grid3{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.grid3{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 20px;
+  transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-3px);border-color:var(--line2)}
+.card .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:19px;
+  background:var(--teal-soft);color:var(--teal);margin-bottom:14px}
+.card h4{font-family:var(--f-disp);font-weight:700;font-size:16.5px;letter-spacing:-.01em}
+.card p{color:var(--muted);font-size:14px;margin-top:7px}
+
+/* ethics */
+.note{background:var(--coral-soft);border:1px solid color-mix(in srgb,var(--coral) 30%,transparent);
+  border-radius:16px;padding:28px 26px;display:flex;gap:18px;align-items:flex-start}
+.note .ic{font-size:24px;flex:none}
+.note h3{font-family:var(--f-disp);font-weight:700;font-size:19px;letter-spacing:-.01em}
+.note p{color:var(--muted);margin-top:8px;font-size:14.5px;max-width:64ch}
+
+/* get it */
+.getgrid{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.getgrid{grid-template-columns:1fr}}
+.snip{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.snip .h{padding:12px 16px;border-bottom:1px solid var(--line);background:var(--panel2);
+  font-family:var(--f-mono);font-size:12.5px;color:var(--faint);display:flex;align-items:center;gap:8px}
+.snip .h .tag{margin-left:auto;font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:6px;
+  background:var(--teal-soft);color:var(--teal);letter-spacing:.03em}
+.snip pre{padding:16px;overflow-x:auto;font-family:var(--f-mono);font-size:13px;line-height:1.9}
+.snip pre .c{color:var(--faint)}
+.snip pre .p{color:var(--coral)}
+
+footer{border-top:1px solid var(--line);padding:34px 0;margin-top:20px}
+footer .wrap{display:flex;gap:14px;align-items:center;flex-wrap:wrap;color:var(--faint);font-size:13px}
+footer .mark{font-size:15px}
+footer .sp{margin-left:auto}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+
+<nav><div class="wrap">
+  <a class="mark" href="#top"><span class="glyph">◎</span> Outreach&nbsp;Agent</a>
+  <div class="navlinks">
+    <a href="#how">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#run">Run it</a>
+    <a class="cta" href="#run">Get the source</a>
+  </div>
+</div></nav>
+
+<header id="top" class="wrap hero">
+  <div>
+    <span class="eyebrow">Job-hunt networking, automated</span>
+    <h1>Give it a <span class="u">company name</span>. Get warm intros and inbox replies.</h1>
+    <p class="lede">A local agent that finds engineers and recent grads at any company,
+      sends a personalized LinkedIn connection, verifies their work email, and asks the
+      questions that actually help: what the team is like, what the OA covers, and how to
+      prepare for the loop.</p>
+    <div class="btns">
+      <a class="btn solid" href="#run">Get the source</a>
+      <a class="btn line" href="#how">See how it works</a>
+    </div>
+    <div class="trust">
+      <span><b>Runs on your machine</b> — your session, your inbox</span>
+      <span><b>Verified emails</b> via Hunter.io</span>
+      <span><b>Safety caps</b> built in</span>
+    </div>
+  </div>
+
+  <div class="console" id="term">
+    <div class="console-bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="name">outreach-agent — live activity</span>
+    </div>
+    <div class="console-body" id="termbody"></div>
+  </div>
+</header>
+
+<section class="band wrap" id="how">
+  <span class="kicker">The pipeline</span>
+  <h2 class="reveal">Five steps, connected end to end</h2>
+  <p class="sub reveal">Each stage feeds the next. The dashboard lights up a step as the
+    one before it finishes, and a live console streams every action.</p>
+  <div class="pipe">
+    <div class="node reveal"><div class="n">1</div><h4>Your profile</h4>
+      <p>Who the messages come from, plus your send limits and confidence threshold.</p></div>
+    <div class="node reveal"><div class="n">2</div><h4>Connect LinkedIn</h4>
+      <p>A one-time login in a dedicated browser profile. Reused on every run after.</p></div>
+    <div class="node reveal"><div class="n">3</div><h4>Find people</h4>
+      <p>Searches for software engineers and recent grads at the company you name.</p></div>
+    <div class="node reveal"><div class="n">4</div><h4>Verify emails</h4>
+      <p>Resolves the real mail domain and scores each address, so you don't bounce.</p></div>
+    <div class="node reveal"><div class="n">5</div><h4>Review &amp; send</h4>
+      <p>Pick who to reach. Connections and interview-prep emails go out, human-paced.</p></div>
+  </div>
+</section>
+
+<section class="band wrap" id="features">
+  <span class="kicker">Why it's different</span>
+  <h2 class="reveal">Built to help you, not to get you flagged</h2>
+  <div class="grid3">
+    <div class="card reveal"><div class="ic">✦</div><h4>Verified, not guessed</h4>
+      <p>Hunter.io confirms the domain and address. Anything under your confidence bar is
+        skipped, so your sender reputation stays clean.</p></div>
+    <div class="card reveal"><div class="ic">◷</div><h4>Human pace, hard caps</h4>
+      <p>Randomized delays and daily ceilings on both connections and emails keep activity
+        well inside sane limits.</p></div>
+    <div class="card reveal"><div class="ic">⊘</div><h4>Never double-contacts</h4>
+      <p>Everyone you reach is logged locally. Re-run all you like — nobody hears from you
+        twice.</p></div>
+    <div class="card reveal"><div class="ic">✎</div><h4>Personalized, in your voice</h4>
+      <p>Notes and emails are written per person and stay under LinkedIn's limits. No em
+        dashes, no templated tells.</p></div>
+    <div class="card reveal"><div class="ic">⇄</div><h4>Two channels</h4>
+      <p>A LinkedIn connection with a note and a direct email — or either one alone, your
+        call per run.</p></div>
+    <div class="card reveal"><div class="ic">⌂</div><h4>Local &amp; private</h4>
+      <p>Runs on your machine against your own session and inbox. Credentials live in files
+        only you can read.</p></div>
+  </div>
+</section>
+
+<section class="band wrap">
+  <div class="note reveal">
+    <span class="ic">⚖️</span>
+    <div>
+      <h3>Use it like a person would</h3>
+      <p>Automated connecting sits against LinkedIn's terms, and cold email is a manners
+        game. This tool is assistive: small batches, honest messages, your accounts, your
+        responsibility. Keep the volume low and the intent genuine and it works the way
+        real networking does.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band wrap" id="run">
+  <span class="kicker">Get started</span>
+  <h2 class="reveal">Clone it and run in two minutes</h2>
+  <p class="sub reveal">Ships as full source with a web dashboard and a CLI. Open source,
+    self-hosted, yours to change.</p>
+  <div class="getgrid">
+    <div class="snip reveal">
+      <div class="h">setup <span class="tag">once</span></div>
+<pre><span class="c"># grab it and install</span>
+git clone &lt;your-repo-url&gt; outreach-agent
+cd outreach-agent
+python3 -m venv .venv &amp;&amp; source .venv/bin/activate
+pip install -r requirements.txt
+cp config.example.yaml config.yaml   <span class="c"># edit me</span></pre>
+    </div>
+    <div class="snip reveal">
+      <div class="h">launch the dashboard <span class="tag">web</span></div>
+<pre>./run_web.sh
+<span class="c"># then open</span> http://localhost:8000
+
+<span class="c"># prefer the terminal? one command:</span>
+python -m outreach.main <span class="p">"Stripe"</span> --limit 8</pre>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <span class="mark"><span class="glyph">◎</span> Outreach Agent</span>
+  <span>A local agent for interview-prep networking.</span>
+  <span class="sp mono">self-hosted · open source</span>
+</div></footer>
+
+<script>
+const lines = [
+  {h:'<span class="p">$</span> outreach "Stripe" --limit 8'},
+  {h:'<span class="d">›</span> searching LinkedIn for engineers &amp; new grads…'},
+  {h:'<span class="ok">✓</span> found 8 people at Stripe'},
+  {h:'<span class="d">›</span> verifying emails via Hunter.io…'},
+  {h:'&nbsp;&nbsp;Priya S.  <span class="ok">priya.s@stripe.com · 99%</span>'},
+  {h:'&nbsp;&nbsp;Diego M.  <span class="ok">diego.m@stripe.com · 96%</span>'},
+  {h:'&nbsp;&nbsp;Sam O.    <span class="w">skipped · 41% (below bar)</span>'},
+  {h:'<span class="d">›</span> sending connection notes + emails…'},
+  {h:'<span class="ok">✓</span> 5 connections · 5 emails sent — human-paced'},
+  {h:'<span class="p">done.</span> <span class="caret"></span>'},
+];
+const body = document.getElementById('termbody');
+const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+function render(i){
+  if(i>=lines.length) return;
+  const div=document.createElement('div');
+  div.className='cl'; div.innerHTML=lines[i].h;
+  body.appendChild(div);
+  const next = reduce ? 0 : 520 + Math.random()*260;
+  if(reduce){ while(i<lines.length){const d=document.createElement('div');
+    d.className='cl';d.style.animation='none';d.style.opacity=1;d.innerHTML=lines[i].h;
+    body.appendChild(d);i++;} return; }
+  setTimeout(()=>render(i+1), next);
+}
+render(0);
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>

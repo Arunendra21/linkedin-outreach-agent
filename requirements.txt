@@ -1,0 +1,8 @@
+selenium>=4.20
+webdriver-manager>=4.0
+pyyaml>=6.0
+dnspython>=2.6
+requests>=2.31
+rich>=13.7
+fastapi>=0.110
+uvicorn>=0.29

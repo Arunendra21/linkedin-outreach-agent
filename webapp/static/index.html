@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LinkedIn Outreach Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="logo">🔗</div>
+    <div class="brand">
+      <h1>LinkedIn Outreach Agent</h1>
+      <p>Company name in &rarr; find engineers &rarr; connect &amp; email for interview prep</p>
+    </div>
+    <div class="pills">
+      <span class="pill" id="pill-linkedin"><span class="dot"></span>LinkedIn</span>
+      <span class="pill" id="pill-hunter"><span class="dot"></span>Hunter.io</span>
+      <span class="pill" id="pill-smtp"><span class="dot"></span>Email</span>
+    </div>
+  </header>
+
+  <!-- STEP 1 — profile / config -->
+  <section class="step open" id="step1">
+    <div class="step-head" data-toggle>
+      <div class="num"><span>1</span></div>
+      <div class="step-title"><h3>Your profile &amp; settings</h3>
+        <p>Who the messages come from, and the safety limits.</p></div>
+      <div class="chev">▶</div>
+    </div>
+    <div class="step-body">
+      <div class="grid">
+        <div class="field"><label>Your name</label><input id="me-name" placeholder="Jane Doe"></div>
+        <div class="field"><label>Headline (one line about you)</label>
+          <input id="me-headline" placeholder="final-year CS student / new grad SWE"></div>
+        <div class="field full"><label>Your LinkedIn URL</label>
+          <input id="me-linkedin" placeholder="https://www.linkedin.com/in/your-handle"></div>
+        <div class="field"><label>Confidence to send email (%)</label>
+          <input id="min-conf" type="number" min="0" max="100" step="5" value="60">
+          <span class="hint">Emails below this Hunter score are skipped (avoids bounces).</span></div>
+        <div class="field"><label>Max per run — connects / emails</label>
+          <div class="row"><input id="lim-conn" type="number" min="1" value="12" style="width:90px">
+            <span style="color:var(--faint)">/</span>
+            <input id="lim-mail" type="number" min="1" value="12" style="width:90px"></div></div>
+        <div class="field full"><label>Target titles (comma separated)</label>
+          <input id="titles" placeholder="Software Engineer, SDE, New Grad"></div>
+      </div>
+      <div class="row"><button class="btn primary" id="save-config">Save settings</button>
+        <span class="hint" id="save-status"></span></div>
+    </div>
+  </section>
+
+  <!-- STEP 2 — connect linkedin -->
+  <section class="step" id="step2">
+    <div class="step-head" data-toggle>
+      <div class="num"><span>2</span></div>
+      <div class="step-title"><h3>Connect LinkedIn</h3>
+        <p>One-time login in a dedicated Chrome profile. Your session is reused after.</p></div>
+      <div class="chev">▶</div>
+    </div>
+    <div class="step-body">
+      <p class="hint" style="margin-bottom:12px">Clicking below opens a Chrome window. Log into
+        LinkedIn there (finish any 2FA). It auto-detects when you're in — the window stays your
+        session for all future runs.</p>
+      <div class="row"><button class="btn primary" id="btn-login">Open Chrome &amp; log in</button>
+        <span class="hint" id="login-status"></span></div>
+    </div>
+  </section>
+
+  <!-- STEP 3 — find people -->
+  <section class="step" id="step3">
+    <div class="step-head" data-toggle>
+      <div class="num"><span>3</span></div>
+      <div class="step-title"><h3>Find people at a company</h3>
+        <p>Searches LinkedIn for engineers &amp; recent grads.</p></div>
+      <div class="chev">▶</div>
+    </div>
+    <div class="step-body">
+      <div class="grid">
+        <div class="field"><label>Company name</label>
+          <input id="company" placeholder="e.g. Stripe"></div>
+        <div class="field"><label>How many people</label>
+          <input id="limit" type="number" min="1" max="25" value="8"></div>
+      </div>
+      <div class="row"><button class="btn primary" id="btn-search">Find people</button>
+        <span class="hint" id="search-status"></span></div>
+    </div>
+  </section>
+
+  <!-- STEP 4 — verify emails -->
+  <section class="step" id="step4">
+    <div class="step-head" data-toggle>
+      <div class="num"><span>4</span></div>
+      <div class="step-title"><h3>Find &amp; verify emails</h3>
+        <p>Resolves the real domain and verifies each address via Hunter.io.</p></div>
+      <div class="chev">▶</div>
+    </div>
+    <div class="step-body">
+      <p class="hint" style="margin-bottom:12px">Runs on the people found in Step 3 for the
+        company below.</p>
+      <div class="row"><button class="btn primary" id="btn-emails">Verify emails</button>
+        <span class="hint" id="emails-status"></span></div>
+    </div>
+  </section>
+
+  <!-- STEP 5 — review & send -->
+  <section class="step" id="step5">
+    <div class="step-head" data-toggle>
+      <div class="num"><span>5</span></div>
+      <div class="step-title"><h3>Review &amp; send</h3>
+        <p>Pick who to reach, then send connections + interview-prep emails.</p></div>
+      <div class="chev">▶</div>
+    </div>
+    <div class="step-body">
+      <div class="row" style="margin-bottom:12px">
+        <label class="toggle"><input type="checkbox" id="tg-connect" checked>
+          <span class="track"></span> Send LinkedIn connections</label>
+        <label class="toggle"><input type="checkbox" id="tg-email" checked>
+          <span class="track"></span> Send emails</label>
+        <button class="btn ghost sm" id="btn-refresh">Refresh list</button>
+        <button class="btn ghost sm" id="btn-selall">Select all</button>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th style="width:34px"></th><th>Person</th><th>Email</th>
+            <th>Confidence</th><th>Status</th></tr></thead>
+          <tbody id="people-body">
+            <tr><td colspan="5" class="empty" style="padding:22px">No people yet — run Steps 3 &amp; 4.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn primary" id="btn-send">Send to selected</button>
+        <span class="hint" id="send-status"></span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- live console -->
+<div class="console" id="console">
+  <div class="console-head" id="console-head">
+    <span class="spinner"></span>
+    <span class="lbl">Live activity</span>
+    <span class="hint" id="console-sub" style="margin-left:4px">click to expand</span>
+    <button class="btn ghost sm" id="btn-clear" style="margin-left:auto">Clear</button>
+  </div>
+  <div class="console-log" id="console-log"></div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+config.yaml
+outreach_state.db
+*.pyc
+__pycache__/
+.venv/
+venv/
+*.log

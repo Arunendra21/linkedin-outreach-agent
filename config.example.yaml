@@ -1,0 +1,60 @@
+# ─────────────────────────────────────────────────────────────
+#  LinkedIn Outreach Agent — configuration
+#  Copy this file to config.yaml and edit. config.yaml is gitignored.
+# ─────────────────────────────────────────────────────────────
+
+# Who you are (used in message templates + email signature)
+me:
+  name: "Your Name"
+  # A short line about you the agent drops into notes/emails
+  headline: "final-year CS student / new grad SWE"
+  # Links people can check you out at (optional, used in email signature)
+  linkedin: "https://www.linkedin.com/in/your-handle"
+  portfolio: ""            # optional
+  phone: ""                # optional, appears in email signature only
+
+# ── LinkedIn ──────────────────────────────────────────────────
+linkedin:
+  # Use your REAL Chrome profile so you're already logged in.
+  # Find yours via chrome://version -> "Profile Path". Point to the
+  # PARENT "User Data" dir, and set profile_directory to the subfolder.
+  chrome_user_data_dir: "/home/YOU/.config/chrome-linkedin-agent"
+  profile_directory: "Default"
+  headless: false           # keep false; LinkedIn detects headless easily
+
+  # Who to target at each company (search keywords, OR-matched)
+  target_titles:
+    - "Software Engineer"
+    - "SDE"
+    - "Backend Engineer"
+    - "New Grad"
+    - "Associate Software Engineer"
+  # Bias toward recent hires / new grads
+  prefer_recent_hires: true
+
+# ── Safety caps (protect your account from restriction) ───────
+limits:
+  max_connects_per_run: 12      # connection requests per run
+  max_emails_per_run: 12        # outreach emails per run
+  max_connects_per_day: 20      # hard daily cap across all runs
+  max_emails_per_day: 25
+  min_delay_seconds: 40         # random human-paced delay, low end
+  max_delay_seconds: 110        # ...high end
+  dry_run: false                # true = draft everything, send NOTHING
+
+# ── Email discovery ───────────────────────────────────────────
+email:
+  # Optional Hunter.io key for domain patterns + verification.
+  # Leave blank to use pattern-guessing + MX/SMTP checks only.
+  hunter_api_key: ""
+  # SMTP RCPT probing is unreliable (Gmail/O365 block it). Off by default.
+  smtp_verify: false
+
+# ── Sending (Gmail) ───────────────────────────────────────────
+smtp:
+  host: "smtp.gmail.com"
+  port: 587
+  username: "you@example.com"
+  # Password is read from this file (never stored in config).
+  # For Gmail/Workspace this must be a Gmail APP PASSWORD for THIS account.
+  password_file: "/home/YOU/.mail_app_pw"
