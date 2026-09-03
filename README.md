@@ -13,26 +13,27 @@ email, so nothing is hidden from you and no one else can use your accounts.
 company name  →  find engineers + new grads  →  connect with a note  →  find & verify email  →  send interview-prep email
 ```
 
-There are **three** ways to use it — pick one:
+There are **four** ways to use it — pick one:
 
-- 🧩 **A Chrome extension** — the simplest. Runs right inside your own browser
-  (already logged into LinkedIn). No Python, no terminal. **Most people want this.**
-  → See [`extension/README.md`](extension/README.md) for the 2-minute install.
-- 🖥️ **A web dashboard** — a local website with buttons, for the full automated
-  email sending too.
+- ⭐ **A Tampermonkey userscript** — free, one-click install, no developer mode.
+  Adds a panel right on LinkedIn. **Easiest for most people.**
+  → [`userscript/README.md`](userscript/README.md)
+- 🧩 **A Chrome extension** — a proper toolbar extension (load unpacked).
+  → [`extension/README.md`](extension/README.md)
+- 🖥️ **A web dashboard** — a local website with buttons, plus automated email sending.
 - ⌨️ **A command line** — for people comfortable with a terminal.
 
-### 🧩 Quickest start: the Chrome extension
+### ⭐ Quickest start: the userscript (free, one click)
 
-1. Download this project (green **Code → Download ZIP**, then unzip).
-2. Go to `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**,
-   and choose the **`extension`** folder.
-3. Click the **◎** icon → ⚙ **Settings**, fill in your name + a free
-   [Hunter.io key](https://hunter.io/api-keys), and save.
-4. Open LinkedIn, click **◎**, type a company, and go.
+1. Install **[Tampermonkey](https://www.tampermonkey.net/)** (free browser add-on).
+2. Click to install the script — Tampermonkey opens an install page, click **Install**:
+   **[outreach-agent.user.js](https://raw.githubusercontent.com/Arunendra21/linkedin-outreach-agent/main/userscript/outreach-agent.user.js)**
+3. Go to LinkedIn, click the **◎** button (bottom-right) → ⚙ Settings → add your
+   name + a free [Hunter.io key](https://hunter.io/api-keys) → Save.
+4. Type a company, hit **Find**, and go.
 
-Full details: [`extension/README.md`](extension/README.md). The rest of this README
-covers the web dashboard and command-line versions.
+Full details: [`userscript/README.md`](userscript/README.md). The rest of this README
+covers the extension, web dashboard, and command-line versions.
 
 ---
 

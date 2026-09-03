@@ -68,10 +68,11 @@ async function scrape(limit) {
 
 // ── connect flow (on the search results page) ────────────────
 function firstButton(matchers) {
-  const btns = [...document.querySelectorAll('button')];
-  for (const b of btns) {
-    const label = (b.getAttribute('aria-label') || '') + ' ' + (b.innerText || '');
-    if (b.offsetParent !== null && matchers.some(m => m.test(label))) return b;
+  for (const b of document.querySelectorAll('button')) {
+    if (b.offsetParent === null) continue;
+    const text = (b.innerText || '').trim();
+    const aria = (b.getAttribute('aria-label') || '').trim();
+    if (matchers.some(m => m.test(text) || m.test(aria))) return b;
   }
   return null;
 }
