@@ -13,10 +13,26 @@ email, so nothing is hidden from you and no one else can use your accounts.
 company name  →  find engineers + new grads  →  connect with a note  →  find & verify email  →  send interview-prep email
 ```
 
-There are two ways to use it:
+There are **three** ways to use it — pick one:
 
-- 🖥️ **A web dashboard** (a website that opens in your browser) — easiest, recommended.
-- ⌨️ **A command line** (typing commands) — for people comfortable with a terminal.
+- 🧩 **A Chrome extension** — the simplest. Runs right inside your own browser
+  (already logged into LinkedIn). No Python, no terminal. **Most people want this.**
+  → See [`extension/README.md`](extension/README.md) for the 2-minute install.
+- 🖥️ **A web dashboard** — a local website with buttons, for the full automated
+  email sending too.
+- ⌨️ **A command line** — for people comfortable with a terminal.
+
+### 🧩 Quickest start: the Chrome extension
+
+1. Download this project (green **Code → Download ZIP**, then unzip).
+2. Go to `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**,
+   and choose the **`extension`** folder.
+3. Click the **◎** icon → ⚙ **Settings**, fill in your name + a free
+   [Hunter.io key](https://hunter.io/api-keys), and save.
+4. Open LinkedIn, click **◎**, type a company, and go.
+
+Full details: [`extension/README.md`](extension/README.md). The rest of this README
+covers the web dashboard and command-line versions.
 
 ---
 

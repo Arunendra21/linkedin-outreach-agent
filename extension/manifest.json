@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Outreach Agent for LinkedIn",
+  "version": "1.0.0",
+  "description": "Type a company name. Find engineers & new grads on LinkedIn, connect with a personalized note, verify their email, and send interview-prep outreach.",
+  "permissions": ["storage", "tabs", "scripting"],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "https://api.hunter.io/*",
+    "https://mail.google.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Outreach Agent",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

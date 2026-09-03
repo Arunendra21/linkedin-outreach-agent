@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="mark"><span class="glyph">◎</span> Outreach Agent</div>
+    <a id="settings" title="Settings">⚙</a>
+  </header>
+
+  <div id="setup-warn" class="warn-banner" hidden>
+    Set your name &amp; keys in <a id="open-opts">Settings</a> first.
+  </div>
+
+  <div class="find">
+    <input id="company" placeholder="Company name (e.g. Stripe)">
+    <input id="limit" type="number" min="1" max="25" value="8" title="How many people">
+    <button id="btn-find" class="btn primary">Find</button>
+  </div>
+
+  <div class="actions">
+    <button id="btn-verify" class="btn ghost">Verify emails</button>
+    <button id="btn-connect" class="btn ghost">Connect</button>
+    <button id="btn-email" class="btn ghost">Email</button>
+  </div>
+
+  <div class="listhead">
+    <label class="selall"><input type="checkbox" id="selall"> Select all</label>
+    <span id="count" class="count"></span>
+  </div>
+
+  <div id="people" class="people">
+    <p class="empty">No people yet. Type a company and hit <b>Find</b>.</p>
+  </div>
+
+  <div class="console">
+    <div class="console-head">Live activity <span id="spin" class="spin" hidden></span></div>
+    <div id="log" class="log"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

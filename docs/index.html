@@ -182,11 +182,11 @@ footer .sp{margin-left:auto}
       questions that actually help: what the team is like, what the OA covers, and how to
       prepare for the loop.</p>
     <div class="btns">
-      <a class="btn solid" href="#run">Get the source</a>
+      <a class="btn solid" href="#run">Install the extension</a>
       <a class="btn line" href="#how">See how it works</a>
     </div>
     <div class="trust">
-      <span><b>Runs on your machine</b> — your session, your inbox</span>
+      <span><b>Chrome extension</b> or self-hosted</span>
       <span><b>Verified emails</b> via Hunter.io</span>
       <span><b>Safety caps</b> built in</span>
     </div>
@@ -260,26 +260,27 @@ footer .sp{margin-left:auto}
 
 <section class="band wrap" id="run">
   <span class="kicker">Get started</span>
-  <h2 class="reveal">Clone it and run in two minutes</h2>
-  <p class="sub reveal">Ships as full source with a web dashboard and a CLI. Open source,
-    self-hosted, yours to change.</p>
+  <h2 class="reveal">Two ways in. Pick your speed.</h2>
+  <p class="sub reveal">The extension runs inside your own browser — nothing to install
+    but a click. Prefer full control? The source ships with a web dashboard and a CLI.</p>
   <div class="getgrid">
     <div class="snip reveal">
-      <div class="h">setup <span class="tag">once</span></div>
-<pre><span class="c"># grab it and install</span>
-git clone &lt;your-repo-url&gt; outreach-agent
+      <div class="h">install the extension <span class="tag">easiest</span></div>
+<pre><span class="c"># 1. download this project (Code -> ZIP), unzip</span>
+<span class="c"># 2. open</span> chrome://extensions
+<span class="c"># 3. turn on Developer mode</span>
+<span class="c"># 4. Load unpacked -&gt; pick the</span> extension/ <span class="c">folder</span>
+<span class="c"># 5. click the</span> ◎ <span class="c">icon, set your name + Hunter key</span>
+<span class="p">done.</span> open LinkedIn and go.</pre>
+    </div>
+    <div class="snip reveal">
+      <div class="h">or run the source <span class="tag">web + cli</span></div>
+<pre>git clone &lt;your-repo-url&gt; outreach-agent
 cd outreach-agent
 python3 -m venv .venv &amp;&amp; source .venv/bin/activate
 pip install -r requirements.txt
-cp config.example.yaml config.yaml   <span class="c"># edit me</span></pre>
-    </div>
-    <div class="snip reveal">
-      <div class="h">launch the dashboard <span class="tag">web</span></div>
-<pre>./run_web.sh
-<span class="c"># then open</span> http://localhost:8000
-
-<span class="c"># prefer the terminal? one command:</span>
-python -m outreach.main <span class="p">"Stripe"</span> --limit 8</pre>
+cp config.example.yaml config.yaml   <span class="c"># edit me</span>
+./run_web.sh   <span class="c"># then open localhost:8000</span></pre>
     </div>
   </div>
 </section>

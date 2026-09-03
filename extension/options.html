@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="popup.css">
+<style>
+  body{width:auto;max-width:620px;margin:0 auto;padding:0 0 40px}
+  .page{padding:24px}
+  h1{font-size:20px;margin-bottom:4px;display:flex;align-items:center;gap:9px}
+  .lede{color:var(--muted);font-size:13px;margin-bottom:22px}
+  fieldset{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+  legend{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--coral);padding:0 6px}
+  .f{display:flex;flex-direction:column;gap:6px;margin-bottom:13px}
+  .f label{font-size:12.5px;font-weight:600;color:var(--muted)}
+  .f input{width:100%}
+  .f .hint{font-size:11px;color:var(--faint)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .save{display:flex;align-items:center;gap:12px;margin-top:6px}
+  a{color:var(--coral)}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1><span class="glyph">◎</span> Outreach Agent — Settings</h1>
+  <p class="lede">Stored only in your browser. Nothing is uploaded anywhere.</p>
+
+  <fieldset>
+    <legend>You</legend>
+    <div class="f"><label>Your name</label><input id="name" placeholder="Jane Doe"></div>
+    <div class="f"><label>Headline (one line about you)</label>
+      <input id="headline" placeholder="final-year CS student / new grad SWE"></div>
+    <div class="f"><label>Your LinkedIn URL</label>
+      <input id="linkedin" placeholder="https://www.linkedin.com/in/your-handle"></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Email finding</legend>
+    <div class="f"><label>Hunter.io API key</label>
+      <input id="hunterKey" type="password" placeholder="paste your key">
+      <span class="hint">Free key at <a href="https://hunter.io/api-keys" target="_blank">hunter.io/api-keys</a>. Without it, emails are guessed (less accurate).</span></div>
+    <div class="f"><label>Only send emails at or above this confidence (%)</label>
+      <input id="minConfidence" type="number" min="0" max="100" step="5" value="60"></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Targeting &amp; limits</legend>
+    <div class="f"><label>Target titles (comma separated)</label>
+      <input id="titles" placeholder="Software Engineer, SDE, New Grad"></div>
+    <div class="two">
+      <div class="f"><label>Max connects / run</label><input id="maxConnects" type="number" min="1" value="12"></div>
+      <div class="f"><label>Max emails / run</label><input id="maxEmails" type="number" min="1" value="12"></div>
+      <div class="f"><label>Min delay (sec)</label><input id="minDelay" type="number" min="5" value="40"></div>
+      <div class="f"><label>Max delay (sec)</label><input id="maxDelay" type="number" min="5" value="110"></div>
+    </div>
+  </fieldset>
+
+  <div class="save">
+    <button id="save" class="btn primary">Save settings</button>
+    <span id="status" class="hint"></span>
+  </div>
+</div>
+<script src="options.js"></script>
+</body>
+</html>
